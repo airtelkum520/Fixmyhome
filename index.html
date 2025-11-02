@@ -1,0 +1,1123 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Home Care - Professional Home Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for consistent theming - REVISED */
+        :root {
+            --primary: #0077b6; /* Deep Teal/Blue */
+            --primary-dark: #005f93;
+            --secondary: #ff9900; /* Soft Gold/Orange */
+            --accent: #e63946; /* Coral Red for accents/alerts */
+            --dark: #212529; /* Near-black for text */
+            --light: #f8f9fa; /* Off-white background */
+            --bg-mid: #e9ecef; /* Light grey for section backgrounds */
+            --text: #343a40;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother transition curve */
+            --gradient: linear-gradient(135deg, var(--primary), #48cae4);
+            --heading-font: 'Montserrat', sans-serif;
+            --body-font: 'Poppins', sans-serif;
+        }
+
+        /* Base Styles - MOBILE FIRST (for screens up to 575px) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--body-font);
+            line-height: 1.7;
+            color: var(--text);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Button Styling */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            box-shadow: 0 8px 15px rgba(0, 119, 182, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            width: 100%; /* Full width on mobile */
+            max-width: 300px;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            opacity: 0;
+            transform: translate(-50%, -50%);
+            transition: all 0.8s ease;
+        }
+
+        .btn:hover::after {
+            width: 400px;
+            height: 400px;
+            opacity: 1;
+            z-index: -1;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 119, 182, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            box-shadow: 0 8px 15px rgba(255, 153, 0, 0.3);
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 0 12px 25px rgba(255, 153, 0, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            box-shadow: none;
+            max-width: none; /* Let the card define the width */
+            width: auto;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 8px 15px rgba(0, 119, 182, 0.3);
+        }
+
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem; /* Reduced margin for mobile */
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-family: var(--heading-font);
+            font-size: 2.5rem; /* Mobile font size */
+            color: var(--dark);
+            text-transform: capitalize;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.8rem;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 6px;
+            background: var(--secondary);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+        }
+       
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+       
+        .header-scrolled {
+            padding: 0.5rem 0; /* Shrink on scroll */
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            font-family: var(--heading-font);
+        }
+
+        /* Mobile Menu Setup */
+        .nav-links {
+            display: none; /* Hidden by default on mobile */
+            width: 100%;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .nav-links.active {
+            display: flex; /* Shown when toggled */
+        }
+       
+        .nav-links a {
+            font-weight: 600;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+       
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+       
+        .nav-links a::after {
+            display: none; /* Hide desktop underline on mobile menu */
+        }
+
+        .nav-cta {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+       
+        .nav-cta .btn {
+            display: none; /* Hide desktop CTA button on mobile nav bar */
+        }
+
+        .mobile-toggle {
+            display: block;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 5rem; /* Mobile padding */
+            background: linear-gradient(135deg, rgba(33, 37, 41, 0.95), rgba(0, 119, 182, 0.8)), url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=cover&w=1500&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(0 0, 100% 0, 100% 95%, 0% 100%);
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            padding-left: 0;
+        }
+
+        .hero h1 {
+            font-family: var(--heading-font);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            border-left: none; /* Remove desktop border style */
+            padding-left: 0;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-direction: column; /* Stack buttons on mobile */
+            align-items: center;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 0;
+            background-color: var(--light);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Single column on mobile */
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #eee;
+        }
+       
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 0 50px 50px;
+            border-color: transparent transparent transparent var(--secondary);
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1), 0 0 0 4px var(--primary);
+        }
+       
+        .service-card:hover::before {
+            border-width: 0 0 70px 70px;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+       
+        .service-card h3 {
+            font-family: var(--heading-font);
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: var(--dark);
+        }
+
+        /* Booking Section */
+        .booking {
+            padding: 5rem 0;
+            background: var(--bg-mid);
+        }
+
+        .booking-container {
+            display: grid;
+            grid-template-columns: 1fr; /* Single column on mobile */
+            gap: 2rem;
+        }
+       
+        .booking-image {
+            order: -1; /* Image above form on mobile */
+            text-align: center;
+        }
+
+        .booking-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background-color: #f8f9fa;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(0, 119, 182, 0.2);
+            background-color: white;
+        }
+
+        .booking-image img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            filter: grayscale(20%);
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 5rem 0;
+            background-color: white;
+        }
+
+        .steps {
+            display: flex;
+            flex-direction: column; /* Stacked steps on mobile */
+            gap: 3rem;
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            padding: 0 1rem;
+        }
+       
+        .step:not(:last-child)::after {
+            display: none; /* Hide angled connector on mobile */
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 0 0 6px rgba(0, 119, 182, 0.2);
+        }
+       
+        .step h3 {
+            font-family: var(--heading-font);
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            text-transform: uppercase;
+            font-size: 1.2rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 5rem 0;
+            background-color: var(--bg-mid);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Single column on mobile */
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            position: relative;
+            border-top: 5px solid var(--secondary);
+            transition: var(--transition);
+        }
+
+        .testimonial-card::before {
+            font-size: 2.5rem; /* Smaller quote on mobile */
+            top: 10px;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 5rem 0;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+       
+        .cta h2 {
+            font-family: var(--heading-font);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 2rem;
+        }
+       
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr; /* Single column on mobile */
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h3 {
+            font-family: var(--heading-font);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            animation: modalFade 0.3s;
+            border-top: 5px solid var(--primary);
+        }
+       
+        /* ------------------------------------------------------------------
+           Mobile-First Media Queries (min-width)
+        ------------------------------------------------------------------ */
+
+        /* Tablet & Small Laptop Screens (Landscape/Mid-size Tablets) */
+        @media (min-width: 576px) {
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+           
+            .hero-btns {
+                flex-direction: row; /* Buttons side-by-side */
+            }
+           
+            .btn {
+                max-width: 250px; /* Limit button width slightly */
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+
+            .testimonial-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+           
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Medium Devices (Standard Tablets / Small Desktops) */
+        @media (min-width: 768px) {
+            .navbar {
+                padding: 1.2rem 0;
+            }
+           
+            .nav-cta .btn {
+                display: block; /* Show desktop CTA button */
+            }
+           
+            .nav-links {
+                display: flex !important; /* Override display: none from mobile toggle */
+                flex-direction: row;
+                width: auto;
+                margin-top: 0;
+                gap: 1.8rem;
+            }
+           
+            .nav-links a {
+                padding: 0;
+                border-bottom: none;
+            }
+           
+            .nav-links a::after {
+                display: block; /* Re-enable desktop underline */
+            }
+
+            .mobile-toggle {
+                display: none;
+            }
+
+            .hero {
+                padding: 12rem 0 8rem;
+                clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
+            }
+           
+            .hero h1 {
+                font-size: 4rem;
+                text-align: left;
+                border-left: 5px solid var(--secondary);
+                padding-left: 15px;
+            }
+           
+            .hero-content {
+                text-align: left;
+                padding-left: 0;
+            }
+
+            .hero p {
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            .hero-btns {
+                justify-content: flex-start;
+            }
+           
+            .section-title h2 {
+                font-size: 3rem;
+            }
+
+            .steps {
+                flex-direction: row; /* Horizontal layout for steps */
+                gap: 1rem;
+            }
+           
+            .step:not(:last-child)::after { /* Advanced Connector Line/Shape */
+                display: block;
+                content: '';
+                position: absolute;
+                top: 25px;
+                right: -15%; /* Adjust based on flex gap */
+                width: 50%;
+                height: 4px;
+                background: var(--bg-mid);
+                z-index: -1;
+                transform: skewX(-20deg);
+            }
+           
+            .footer-content {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Large Devices (Standard Desktops / Large Tablets) */
+        @media (min-width: 992px) {
+            .booking-container {
+                grid-template-columns: 1.2fr 1fr; /* Two columns */
+                gap: 5rem;
+            }
+           
+            .booking-image {
+                order: 0; /* Image on the right */
+            }
+           
+            .hero h1 {
+                font-size: 4.5rem; /* Full desktop size */
+            }
+           
+            .btn {
+                max-width: none;
+            }
+        }
+
+        /* Extra Large Devices (Large Monitors) */
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1400px;
+            }
+        }
+
+        /* Optional: Print Styles (Important for Accessibility/UX) */
+        @media print {
+            header, footer, .btn, .nav-cta, .booking-image, .cta::before {
+                display: none;
+            }
+            body {
+                background-color: white !important;
+                color: black !important;
+            }
+            .container {
+                width: 100%;
+            }
+           
+            .section-title h2::after, .footer-column h3::after {
+                background: black !important;
+            }
+           
+            .booking-form {
+                box-shadow: none;
+                border: 1px solid #ccc;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-tools logo-icon"></i>
+                    <span class="logo-text">Fix My Home</span>
+                </div>
+               
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#booking">Book Now</a></li>
+                    <li><a href="#how-it-works">Process</a></li>
+                    <li><a href="#testimonials">Reviews</a></li>
+                </ul>
+               
+                <div class="nav-cta">
+                    <a href="#booking" class="btn">Schedule Service</a>
+                    <div class="mobile-toggle">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Expert Solutions for Every Home Repair</h1>
+                <p>We connect you with certified, background-checked professionals for electrical, plumbing, painting, and general maintenance. Quality guaranteed.</p>
+                <div class="hero-btns">
+                    <a href="#services" class="btn">Explore Services</a>
+                    <a href="#booking" class="btn btn-secondary">Get a Quote Today</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Premium Services</h2>
+            </div>
+           
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-bolt service-icon"></i>
+                    <h3>Electrical Services</h3>
+                    <p>Certified electricians for wiring, installations, and critical repairs. Safety first, always.</p>
+                    <button class="btn btn-outline book-service" data-service="Electrical Services">Book Now</button>
+                </div>
+               
+                <div class="service-card">
+                    <i class="fas fa-faucet service-icon"></i>
+                    <h3>Plumbing Solutions</h3>
+                    <p>Expert leak detection, drain cleaning, and water system maintenance with rapid response.</p>
+                    <button class="btn btn-outline book-service" data-service="Plumbing">Book Now</button>
+                </div>
+               
+                <div class="service-card">
+                    <i class="fas fa-paint-roller service-icon"></i>
+                    <h3>Professional Painting</h3>
+                    <p>High-quality interior and exterior painting services for a flawless, lasting finish.</p>
+                    <button class="btn btn-outline book-service" data-service="Painting">Book Now</button>
+                </div>
+               
+                <div class="service-card">
+                    <i class="fas fa-tint service-icon"></i>
+                    <h3>Water Tank Hygiene</h3>
+                    <p>Advanced water tank cleaning and sanitization for clean, safe water supply.</p>
+                    <button class="btn btn-outline book-service" data-service="Tank Cleaning">Book Now</button>
+                </div>
+               
+                <div class="service-card">
+                    <i class="fas fa-hammer service-icon"></i>
+                    <h3>Full Home Shifting</h3>
+                    <p>Design, planning, and execution of complete home makeovers and major remodeling projects.</p>
+                    <button class="btn btn-outline book-service" data-service="Home Renovation">Book Now</button>
+                </div>
+               
+                <div class="service-card">
+                    <i class="fas fa-tools service-icon"></i>
+                    <h3>Handyman & Repairs</h3>
+                    <p>Trusted help for all small and general maintenance tasks around your home or office.</p>
+                    <button class="btn btn-outline book-service" data-service="General Repairs">Book Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="booking" id="booking">
+        <div class="container">
+            <div class="section-title">
+                <h2>Easy Online Booking</h2>
+            </div>
+           
+            <div class="booking-container">
+                <div class="booking-image">
+                    <img src="https://images.unsplash.com/photo-1607720146778-68d2d56fa38c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=797" alt="Professional handyman assessing work">
+                </div>
+               
+             <div class="booking-form">
+  <form id="bookingForm">
+    <div class="form-group">
+      <label for="service">Select Service</label>
+      <select class="form-control" id="service" required>
+        <option value="">Choose a service</option>
+        <option value="Electrical Services">Electrical Services</option>
+        <option value="Plumbing Solutions">Plumbing Solutions</option>
+        <option value="Professional Painting">Professional Painting</option>
+        <option value="Water Tank Hygiene">Water Tank Hygiene</option>
+        <option value="Full Home Renovation">Full Home Renovation</option>
+        <option value="Handyman & Repairs">Handyman & Repairs</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Full Name</label>
+      <input type="text" class="form-control" id="name" placeholder="Your full name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" class="form-control" id="email" placeholder="Your email" required>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone Number</label>
+      <input type="tel" class="form-control" id="phone" placeholder="Your phone number" required>
+    </div>
+
+    <div class="form-group">
+      <label for="date">Preferred Date</label>
+      <input type="date" class="form-control" id="date" required>
+    </div>
+
+    <div class="form-group">
+      <label for="time">Preferred Time Slot</label>
+      <select class="form-control" id="time" required>
+        <option value="">Select a time</option>
+        <option value="Morning (8am-12pm)">Morning (8am - 12pm)</option>
+        <option value="Afternoon (12pm-4pm)">Afternoon (12pm - 4pm)</option>
+        <option value="Evening (4pm-8pm)">Late Afternoon (4pm - 8pm)</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="message">Enter your Address</label>
+      <textarea class="form-control" id="message" rows="4" placeholder="Briefly enter your address"></textarea>
+    </div>
+
+    <button type="submit" class="btn" style="width: 100%;">Confirm Booking</button>
+  </form>
+</div>
+    </section>
+
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Simple Process</h2>
+            </div>
+           
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Schedule Online</h3>
+                    <p>Select your service and preferred time using our fast, intuitive online system.</p>
+                </div>
+               
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Expert Dispatched</h3>
+                    <p>A certified, background-checked professional is assigned and arrives promptly.</p>
+                </div>
+               
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Quality Completion</h3>
+                    <p>Work is completed to the highest standard with our 100% satisfaction guarantee.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Trusted By Homeowners</h2>
+            </div>
+           
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The electrician arrived right on time and fixed our wiring issue in under an hour. Professional and knowledgeable. Highly recommend!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JS</div>
+                        <div class="author-info">
+                            <h4>Manikandan</h4>
+                            <p>Electrical Service</p>
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Our bathroom renovation turned out better than we imagined. The team was clean, efficient, and respectful of our home. Fantastic service."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MJ</div>
+                        <div class="author-info">
+                            <h4>John</h4>
+                            <p>Renovation Client</p>
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Emergency plumbing service at 2 AM! They fixed our burst pipe quickly and prevented major water damage. Lifesavers! Professional and rapid response."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RW</div>
+                        <div class="author-info">
+                            <h4>Vignesh</h4>
+                            <p>Emergency Plumbing</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>Need Immediate Assistance?</h2>
+            <p>Don't wait! Our certified technicians are available 24/7 for urgent home repairs and routine maintenance. Get a free, no-obligation estimate now.</p>
+            <div class="hero-btns">
+                <a href="tel:9629123034" class="btn btn-secondary">Call Now: 9629123034</a>
+                <a href="#booking" class="btn btn-outline" style="border-color: white; color: white;">Book Online Instantly</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Fix My home</h3>
+                    <p>Your trusted partner for all professional home maintenance and renovation services. We are dedicated to quality and customer satisfaction.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+               
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services Portfolio</a></li>
+                        <li><a href="#booking">Book Appointment</a></li>
+                        <li><a href="#how-it-works">Our Process</a></li>
+                        <li><a href="#testimonials">Customer Reviews</a></li>
+                    </ul>
+                </div>
+               
+                <div class="footer-column">
+                    <h3>Our Expertise</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Electrical Wiring</a></li>
+                        <li><a href="#">Drain Unclogging</a></li>
+                        <li><a href="#">Exterior Paint</a></li>
+                        <li><a href="#">Home shifting</a></li>
+                        <li><a href="#">Emergency Repairs</a></li>
+                    </ul>
+                </div>
+               
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li style="font-size:25px;color: #ff9900;">R.Rajesh</li>
+                        <li><i class="fas fa-map-marker-alt"></i>Kasiraman Street, Kumbakonam</li>
+                        <li><i class="fas fa-phone"></i>9629123034</li>
+                        <li><i class="fas fa-envelope"></i>acetrakeshwarcse@gmail.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Sun: 24/7 Service</li>
+                    </ul>
+                </div>
+            </div>
+           
+            <div class="copyright">
+                <p>&copy; 2025 Fix My Home. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal" id="confirmationModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Booking Confirmed! ✅</h3>
+            <p>Thank you for booking with Fix My Home. We have received your request for **<span id="confirmedService"></span>**.</p>
+            <p>Our team will contact you shortly at **<span id="confirmedPhone"></span>** to confirm your appointment details and technician assignment.</p>
+            <button class="btn" id="modalClose">Great!</button>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Navigation Toggle
+        document.querySelector('.mobile-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+               
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+               
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - (window.innerWidth >= 768 ? 80 : 60), // Adjust scroll offset based on screen size
+                        behavior: 'smooth'
+                    });
+                   
+                    document.querySelector('.nav-links').classList.remove('active');
+                }
+            });
+        });
+
+        // Add shadow/shrink to header on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if(window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+                header.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.classList.remove('header-scrolled');
+                header.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.05)';
+            }
+        });
+
+        // Service booking buttons
+        document.querySelectorAll('.book-service').forEach(button => {
+            button.addEventListener('click', function() {
+                const service = this.getAttribute('data-service');
+                // Map the short service name to the longer option text for the form
+                const optionsMap = {
+                    "Electrical Services": "Electrical Services",
+                    "Plumbing": "Plumbing Solutions",
+                    "Painting": "Professional Painting",
+                    "Tank Cleaning": "Water Tank Hygiene",
+                    "Home Renovation": "Full Home Renovation",
+                    "General Repairs": "Handyman & Repairs"
+                };
+               
+                document.getElementById('service').value = optionsMap[service] || service;
+               
+                document.getElementById('booking').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Booking form submission
+
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+           
+            const service = document.getElementById('service').value;
+            const phone = document.getElementById('phone').value;
+           
+            document.getElementById('confirmedService').textContent = service;
+            document.getElementById('confirmedPhone').textContent = phone;
+           
+            document.getElementById('confirmationModal').style.display = 'flex';
+           
+            this.reset();
+        });
+
+        // Close modal functionality
+        document.querySelector('.close-modal').addEventListener('click', function() {
+            document.getElementById('confirmationModal').style.display = 'none';
+        });
+       
+        document.getElementById('modalClose').addEventListener('click', function() {
+            document.getElementById('confirmationModal').style.display = 'none';
+        });
+       
+        window.addEventListener('click', function(e) {
+            const modal = document.getElementById('confirmationModal');
+            if(e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Set minimum date to today for booking
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('date').setAttribute('min', today);
+       
+   
+       
+    </script>
+</body>
+</html>
